@@ -37,7 +37,8 @@ I hope you enjoy your Neovim journey,
 
 P.S. You can delete this when you're done too. It's your config now :)
 --]]
-
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -68,7 +69,20 @@ vim.opt.rtp:prepend(lazypath)
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
- 
+  
+  --Neo-tree (Tree)
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("nvim-tree").setup {}
+    end,
+  },
+
   -- Formatter
   {
     'stevearc/conform.nvim',
@@ -367,25 +381,26 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+
+
+
 -- [[ Basic Keymaps ]]
-
-
 -- keybinds for toggling netrw 
 -- Variable to track netrw state
-local netrw_open = false
+local neotree_open = false
 
 -- Function to toggle netrw explorer
-function ToggleNetrw()
-    if netrw_open then
-        vim.cmd('bd')
-    else
-        vim.cmd('Explore')
-    end
-    netrw_open = not netrw_open
-end
+--function ToggleNeotree()
+--    if neotree_open then
+--      vim.cmd('bd')
+--    else
+--      vim.cmd('NvimTreeToggle')
+--    end
+--    neotree_open = not neotree_open
+--end
 
 -- Define keybinding to toggle netrw
-vim.api.nvim_set_keymap('n', '<F4>', '<cmd>lua ToggleNetrw()<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<F4>', '<cmd>NvimTreeToggle<CR>', {noremap = true, silent = true})
 
 
 -- Keymaps for better default experience
