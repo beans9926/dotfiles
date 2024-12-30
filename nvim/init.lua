@@ -400,7 +400,7 @@ local neotree_open = false
 --end
 
 -- Define keybinding to toggle netrw
-vim.api.nvim_set_keymap('n', '<F4>', '<cmd>NvimTreeToggle<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<F4>', '<cmd>NvimTreeFindFileToggle<CR>', {noremap = true, silent = true})
 
 
 -- Keymaps for better default experience
